@@ -44,13 +44,13 @@ time = millis();
     lcd.setCursor(0, 0);
     lcd.print("Rotating eggs ");
     if (statusServo == false){
-      for (pos = 0; pos <= 180; pos += 1){
+      for (pos = 50; pos <= 130; pos += 1){
         servo.write(pos);
         delay(15);
       }
     }
     if (statusServo == true){
-      for (pos = 180; pos >= 0; pos -= 1){
+      for (pos = 130; pos >= 50; pos -= 1){
         servo.write(pos);
         delay(15);
       }
@@ -67,7 +67,7 @@ void setup() {
   pinMode(8, OUTPUT);
   pinMode(motor,OUTPUT);
   pinMode(ledblue,OUTPUT);
-  servo.write(0);
+  servo.write(50);
   servo.attach(9); // servo pin 
   dht.begin();
 }
@@ -138,16 +138,16 @@ void loop() {
    }
 
    if (h < 50){
-    digitalWrite(ledblue,HIGH); // led that represents the  humidifier 
+    digitalWrite(ledblue,HIGH); // turn on the led that represents the  humidifier 
     delay(100);
    }
    else if (h > 55){
-    analogWrite(motor,255); // ventilator
-    digitalWrite(ledblue,LOW); // off the humidifier
+    analogWrite(motor,255); // turn on the ventilator
+    digitalWrite(ledblue,LOW); // turn off led that represents the humidifier
    }
    else if (h >=50 && h <= 55){
     //Normal rank of h
-    digitalWrite(ledblue,LOW);
+    digitalWrite(ledblue,LOW); // turn off led that represents the humidifier
    }
    
    rotacionhuevos ();
